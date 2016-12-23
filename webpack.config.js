@@ -38,5 +38,5 @@ module.exports = {
         title: 'Hacker News',
         template: 'index.html'
       })
-    ],
+    ]
 };

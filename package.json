@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "build": "npm run clean && webpack --config webpack.prod.config",
-    "start": "webpack-dev-server --port 3000",
+    "start": "webpack-dev-server -d --port 3000 --history-api-fallback",
     "lint": "eslint src/*.js",
     "test": "echo \"Test: TBD\"",
     "postversion": "git push && git push --tags"
@@ -27,12 +27,16 @@
   "license": "MIT",
   "dependencies": {
     "immutable": "^3.8.1",
-    "normalizr": "^2.3.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-redux": "^5.0.1",
+    "react-router": "^3.0.0",
     "redux": "^3.6.0",
-    "redux-actions": "^1.2.0"
+    "redux-actions": "^1.2.0",
+    "redux-devtools-extension": "^1.0.0",
+    "redux-immutable": "^3.0.9",
+    "redux-thunk": "^2.1.0",
+    "whatwg-fetch": "^2.0.1"
   },
   "devDependencies": {
     "babel-cli": "*",
@@ -47,7 +51,7 @@
     "eslint": "*",
     "eslint-config-airbnb": "*",
     "eslint-plugin-import": "*",
-    "eslint-plugin-jsx-a11y": "*",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "*",
     "file-loader": "*",
     "html-webpack-plugin": "*",
