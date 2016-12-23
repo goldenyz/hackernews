@@ -1,0 +1,12 @@
+const Action = {
+  FETCHING_NEW: Symbol('FETCHING_NEW'),
+  FETCH_NEW_SUCCEEDED: Symbol('FETCH_NEW_SUCCEEDED'),
+  FETCH_NEW_FAILED: Symbol('FETCH_NEW_FAILED'),
+
+  FETCHING_ITEM: Symbol('FETCHING_ITEM'),
+  FETCH_ITEM_SUCCEEDED: Symbol('FETCH_ITEM_SUCCEEDED'),
+  FETCH_ITEM_FAILED: Symbol('FETCH_ITEM_FAILED'),
+};
+Object.freeze(Action);
+
+export default Action;
