@@ -39,6 +39,7 @@
     "whatwg-fetch": "^2.0.1"
   },
   "devDependencies": {
+    "autoprefixer": "*",
     "babel-cli": "*",
     "babel-core": "*",
     "babel-eslint": "*",

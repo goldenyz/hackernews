@@ -1,3 +1,4 @@
+/* eslint-disable */
 var webpack = require('webpack');
 var devConfig = require('./webpack.config');
 
@@ -11,3 +12,7 @@ devConfig.plugins.push(
   }),
   new UglifyJsPlugin({ minimize: true })
 );
+
+devConfig.devtool = 'source-map';
+
+module.exports = devConfig;
