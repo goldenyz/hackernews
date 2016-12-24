@@ -13,6 +13,4 @@ devConfig.plugins.push(
   new UglifyJsPlugin({ minimize: true })
 );
 
-devConfig.devtool = 'source-map';
-
 module.exports = devConfig;
