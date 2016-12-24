@@ -11,6 +11,7 @@ const mapStateToProps = (state) => {
   return {
     stories: ids.slice(0, loaded)
       .map(id => itemByIdMap.get(id)),
+    status: newStoryInfo.get('status'),
   };
 };
 

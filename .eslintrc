@@ -25,5 +25,6 @@
     'globals': {
         'document': false,
         'fetch': false,
+        'window': false,
     },
 }
