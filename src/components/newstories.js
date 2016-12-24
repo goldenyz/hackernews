@@ -1,10 +1,12 @@
 import React, { PureComponent, PropTypes } from 'react';
 import { List } from 'immutable';
 import Story from './widget/story';
+import config from '../config';
 
 class NewStories extends PureComponent {
   componentDidMount() {
-    this.props.onInitNewStories();
+    this.props.onInitNewStories()
+      .then(() => this.props.onLoadNewStories(config.items_per_page));
   }
 
   render() {
@@ -20,6 +22,7 @@ class NewStories extends PureComponent {
 NewStories.propTypes = {
   stories: PropTypes.instanceOf(List).isRequired,
   onInitNewStories: PropTypes.func.isRequired,
+  onLoadNewStories: PropTypes.func.isRequired,
 };
 
 export default NewStories;

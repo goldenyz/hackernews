@@ -1,16 +1,20 @@
 import { connect } from 'react-redux';
 import NewStories from '../components/newstories';
+import fetchNew from '../actions/fetchNew';
 import fetchNewStories from '../actions/fetchNewStories';
 
 const mapStateToProps = (state) => {
-  const storyByTypeMap = state.get('storyByTypeMap');
+  const newStoryInfo = state.get('newStoryInfo');
+  const ids = newStoryInfo.get('ids');
+  const loaded = newStoryInfo.get('loaded');
   const itemByIdMap = state.get('itemByIdMap');
   return {
-    stories: storyByTypeMap.get('new')
-      .map(newItemId => itemByIdMap.get(newItemId)),
+    stories: ids.slice(0, loaded)
+      .map(id => itemByIdMap.get(id)),
   };
 };
 
 export default connect(mapStateToProps, {
-  onInitNewStories: fetchNewStories,
+  onInitNewStories: fetchNew,
+  onLoadNewStories: fetchNewStories,
 })(NewStories);

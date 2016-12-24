@@ -9,8 +9,9 @@ import rootReducer from './reducers/index';
 
 // const defaultState = Immutable.fromJS({
 //   itemByIdMap: {},
-//   storyByTypeMap: {
-//     new: [],
+//   newStoryInfo: {
+//     ids: [],
+//     loaded: 0,
 //   }),
 //   status: LOADED,
 // })

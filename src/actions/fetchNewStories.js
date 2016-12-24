@@ -1,23 +1,30 @@
 import { createAction } from 'redux-actions';
 import Action from '../constants/action';
-import { getNew } from '../io/request/hackernews';
 import fetchItem from './fetchItem';
 import { error } from '../logger';
+import store from '../store';
 
-const fetchingNew = createAction(Action.FETCHING_NEW);
-const fetchNewSucceeded = createAction(Action.FETCH_NEW_SUCCEEDED);
-const fetchNewFailed = createAction(Action.FETCH_NEW_FAILED);
+const fetchingNewStories = createAction(Action.FETCHING_NEW_STORIES);
+const fetchNewStoriesSucceeded = createAction(Action.FETCH_NEW_STORIES_SUCCEEDED);
+const fetchNewStoriesFailed = createAction(Action.FETCH_NEW_STORIES_FAILED);
 
-export default () => (dispatch) => {
-  dispatch(fetchingNew());
+export default count => (dispatch) => {
+  if (count <= 0) return Promise.resolve();
 
-  return getNew().then((newStoryIds) => {
-    const newStories = newStoryIds.map(id => dispatch(fetchItem(id)));
-    return Promise.all(newStories)
-      .then(() => dispatch(fetchNewSucceeded(newStoryIds)));
-  }).catch((err) => {
-    error('request new items failed.');
-    error(err);
-    dispatch(fetchNewFailed());
-  });
+  const newStoryInfo = store.getState().get('newStoryInfo');
+  const newIds = newStoryInfo.get('ids');
+  const loaded = newStoryInfo.get('loaded');
+  const idsToLoad = newIds.slice(loaded, loaded + count);
+  if (idsToLoad.size === 0) return Promise.resolve();
+
+  dispatch(fetchingNewStories());
+
+  const newStories = idsToLoad.map(id => dispatch(fetchItem(id)));
+  return Promise.all(newStories)
+    .then(() => dispatch(fetchNewStoriesSucceeded(idsToLoad.size)))
+    .catch((err) => {
+      error('request new stories failed.');
+      error(err);
+      dispatch(fetchNewStoriesFailed());
+    });
 };
