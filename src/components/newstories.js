@@ -6,6 +6,8 @@ import { getWindowSize } from '../util/dom';
 import Status from '../constants/status';
 import Loading from './widget/loading';
 
+import '../res/styles/newstories.less';
+
 class NewStories extends PureComponent {
   constructor(props) {
     super(props);
@@ -41,13 +43,19 @@ class NewStories extends PureComponent {
 
   render() {
     return (
-      <div className="new-stories" ref={(ref) => { this._newStoriesDOM = ref; }}>
-        {this.props.stories.map(story =>
-          <Story key={story.get('id')} story={story} />)}
-        {this.props.status === Status.LOADING &&
-          <div className="loader">
-            <Loading />
-          </div>}
+      <div id="new-stories" ref={(ref) => { this._newStoriesDOM = ref; }}>
+        <div className="story-list">
+          {
+            this.props.stories.map(story =>
+              <Story key={story.get('id')} story={story} />)
+          }
+        </div>
+        {
+          this.props.status === Status.LOADING &&
+            <div className="loader">
+              <Loading />
+            </div>
+        }
       </div>
     );
   }

@@ -11,7 +11,6 @@ const Main = props => (
       <NavBar />
     </div>
     <div id="content">
-      { props.status === Status.LOADING && <Loading /> }
       { props.children }
     </div>
   </div>

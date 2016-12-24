@@ -1,0 +1,60 @@
+.story {
+  width: 100%;
+  background: #fff;
+  padding: 13px 10px 10px 10px;
+  cursor: default;
+  border-bottom: 1px solid #e5e5e5;
+
+  &:hover {
+    background: #F9F8F8;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  .story-content {
+    font-size: 16px;
+    display: inline-block;
+    line-height: 20px;
+
+    .title {
+      margin-right: 10px;
+      text-decoration: none;
+      color: #4F8EFA;
+
+      &:visited {
+        color: #1A3158;
+      }
+
+      &.hover {
+        text-decoration: underline;
+        color: #3f71c5;
+      }
+    }
+
+    .domain {
+      color: #4d5763;
+      font-size: 13px;
+      margin: 0;
+
+      a {
+        color: inherit;
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .story-bottom {
+    color: #4d5763;
+    font-size: 13px;
+    margin-top: 13px;
+
+    .author {
+      font-weight: 600;
+    }
+  }
+}
