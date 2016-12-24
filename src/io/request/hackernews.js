@@ -12,3 +12,15 @@ export const getNew = () => {
 
   return getJSON(url, 'cors');
 };
+
+export const getShow = () => {
+  const url = `${config.hacker_news_host}/v0/showstories.json`;
+
+  return getJSON(url, 'cors');
+};
+
+export const getJobs = () => {
+  const url = `${config.hacker_news_host}/v0/jobstories.json`;
+
+  return getJSON(url, 'cors');
+};

@@ -9,11 +9,12 @@ import rootReducer from './reducers/index';
 
 // const defaultState = Immutable.fromJS({
 //   itemByIdMap: {},
-//   newStoryInfo: {
+//   itemsContainer: {
 //     ids: [],
 //     loaded: 0,
+//     status: Status.LOADED,
 //   }),
-//   status: LOADED,
+//   activePage: ItemType.NEW_STORIES,
 // })
 
 const middlewares = [

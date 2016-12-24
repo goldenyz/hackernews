@@ -4,5 +4,5 @@ import fetchItemList from '../actions/fetchItemList';
 import ItemType from '../constants/itemType';
 
 export default connect(null, {
-  onInitItems: () => fetchItemList(ItemType.NEW_STORY),
+  onInitItems: () => fetchItemList(ItemType.JOBS),
 })(ItemsContainer);

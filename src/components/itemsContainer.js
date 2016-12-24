@@ -8,7 +8,7 @@ import Loading from './widget/loading';
 
 import '../res/styles/newstories.less';
 
-class NewStories extends PureComponent {
+class ItemsContainer extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -17,8 +17,8 @@ class NewStories extends PureComponent {
   }
 
   componentDidMount() {
-    this.props.onInitNewStories()
-      .then(() => this._loadMoreStories());
+    this.props.onInitItems()
+      .then(() => this._loadMoreItems());
     window.addEventListener('scroll', this._handleScroll);
   }
 
@@ -27,27 +27,30 @@ class NewStories extends PureComponent {
   }
 
   _handleScroll() {
-    if (!this._newStoriesDOM) return;
+    if (!this._newStoriesDOM ||
+      this.props.status === Status.LOADING) return;
 
     const windowSize = getWindowSize();
     const domRect = this._newStoriesDOM.getBoundingClientRect();
     if (windowSize.height >= domRect.bottom) {
-      this._loadMoreStories();
+      this._loadMoreItems();
     }
   }
 
-  _loadMoreStories() {
-    if (this.props.status === Status.LOADING) return;
-    this.props.onLoadNewStories(config.items_per_page);
+  _loadMoreItems() {
+    this.props.onLoadItems(config.items_per_page);
   }
 
   render() {
+    let ItemClass = Story;
+
     return (
       <div id="new-stories" ref={(ref) => { this._newStoriesDOM = ref; }}>
         <div className="story-list">
           {
-            this.props.stories.map(story =>
-              <Story key={story.get('id')} story={story} />)
+            this.props.items.map(item => (
+              <ItemClass key={item.get('id')} item={item} />
+            ))
           }
         </div>
         {
@@ -61,11 +64,11 @@ class NewStories extends PureComponent {
   }
 }
 
-NewStories.propTypes = {
-  stories: PropTypes.instanceOf(List).isRequired,
+ItemsContainer.propTypes = {
+  items: PropTypes.instanceOf(List).isRequired,
   status: PropTypes.symbol.isRequired,
-  onInitNewStories: PropTypes.func.isRequired,
-  onLoadNewStories: PropTypes.func.isRequired,
+  onInitItems: PropTypes.func.isRequired,
+  onLoadItems: PropTypes.func.isRequired,
 };
 
-export default NewStories;
+export default ItemsContainer;

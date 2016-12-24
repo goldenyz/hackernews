@@ -7,8 +7,18 @@ const NavBar = () => (
   <div id="navbar">
     <ul>
       <li>
-        <Link to="/new">
+        <Link to="/new" activeClassName="active">
           New
+        </Link>
+      </li>
+      <li>
+        <Link to="/show" activeClassName="active">
+          Show
+        </Link>
+      </li>
+      <li>
+        <Link to="/jobs" activeClassName="active">
+          Jobs
         </Link>
       </li>
     </ul>

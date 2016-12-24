@@ -4,31 +4,31 @@ import { convertTime } from '../../util/datetime';
 import '../../res/styles/story.less';
 
 const Story = (props) => {
-  const { story } = props;
-  const domain = story.get('url') ? story.get('url').split(':')[1].split('//')[1].split('/')[0] : '';
+  const { item } = props;
+  const domain = item.get('url') ? item.get('url').split(':')[1].split('//')[1].split('/')[0] : '';
 
   return (
     <div className="story">
       <div className="story-content">
-        <a className="title" target="_blank" rel="noopener noreferrer" href={story.get('url')}>
-          <span>{story.get('title')}</span>
+        <a className="title" target="_blank" rel="noopener noreferrer" href={item.get('url')}>
+          <span>{item.get('title')}</span>
         </a>
         <span className={domain ? 'domain' : 'hidden'}>
           (<a href={`http://${domain}`} title="Domain">{domain}</a>)
         </span>
       </div>
       <div className="story-bottom">
-        <span>{story.get('score')} {(story.get('score') > 1) ? 'points' : 'point'}</span>
+        <span>{item.get('score')} {(item.get('score') > 1) ? 'points' : 'point'}</span>
         <span> by </span>
-        <span className="author">{story.get('by')}</span>
-        <span> | {convertTime(story.get('time'))} </span>
+        <span className="author">{item.get('by')}</span>
+        <span> | {convertTime(item.get('time') * 1000)} </span>
       </div>
     </div>
   );
 };
 
 Story.propTypes = {
-  story: PropTypes.object.isRequired,
+  item: PropTypes.object.isRequired,
 };
 
 export default Story;
